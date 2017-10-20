@@ -1,0 +1,7 @@
+{
+    "presets": ["env"],
+    "ignore": [
+        "dist/**/*",
+        "node_modules"
+    ]
+}
