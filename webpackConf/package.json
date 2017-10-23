@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server -d --config webpack/webpack.config.babel.js", 
     "build": "webpack -p"
   },
   "devDependencies": {
