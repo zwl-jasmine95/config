@@ -1,4 +1,3 @@
-
 import '../sass/a.scss'
 import axios from 'axios'
 axios.get(

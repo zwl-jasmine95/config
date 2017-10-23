@@ -58,11 +58,11 @@ module.exports = {
         })
     ],
     devServer:{
-        host:'172.16.0.105',
-        port:80,
+        host:'172.16.0.105',  //代理地址-本机ip地址
+        port:80,  //端口号
         proxy:{
             '/api':{
-                target:''
+                target:''   //跨域访问地址
             }
         }
     }
