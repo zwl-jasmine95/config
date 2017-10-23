@@ -11,11 +11,11 @@ function resolve(...dir) {  //拼接
 }
 
 module.exports = {
-    entry: resolve('src/js/index.js'),
+    entry: resolve('src/js/a.js'),
     output: {
         filename: 'js/[name].[hash:8].js',
         path: resolve('dist'),
-        publicPath: '/'
+        publicPath: '/'   //发布路径配置
     },
     module: {
         rules: [
@@ -56,5 +56,15 @@ module.exports = {
             filename:'css/[name].css',
             allChunks:true
         })
-    ]
+    ],
+    devServer:{
+        host:'172.16.0.105',
+        port:80,
+        proxy:{
+            '/api':{
+                target:''
+            }
+        }
+    }
+
 }

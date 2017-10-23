@@ -1,3 +1,4 @@
+//主要是将ES6转换为ES5
 {
     "presets": ["env"],
     "ignore": [
