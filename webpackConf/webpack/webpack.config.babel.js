@@ -110,3 +110,14 @@ for(let pug in pathPug){
 }
 
 module.exports = webpackConf;
+
+
+/**
+ * 发布环境添加代理：
+ * 1、执行npm build命令生成dist文件夹，
+ * 2、在dist文件夹下安装http-server(npm init,npm install http-server --save-dev)
+ * 3、在dist/package.json中添加属性：
+ * "scripts": {
+    "dev":"http-server -a localhost -p 8090"   //直接写http-server也行
+    },
+ */
