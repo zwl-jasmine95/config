@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server -d --config webpack/webpack.config.babel.js", 
-    "build": "webpack -p"
+    "dev": "webpack-dev-server -d --config webpack/webpack.config.babel.js",
+    "build": "webpack --config webpack/webpack.config.babel.js -p"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

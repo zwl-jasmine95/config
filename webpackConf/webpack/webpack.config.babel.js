@@ -6,7 +6,7 @@ const extractTextPlugin = require('extract-text-webpack-plugin')
 
 const path = require('path')
 const glob = require('glob'); //匹配文件路径
-let globPath = {
+const globPath = {
     js:resolve('src/js/**/*.js'),
     // js:resolve('src/js/**/*.+(t|j)s'),
     pug:resolve('src/view/page/**/*.pug')
