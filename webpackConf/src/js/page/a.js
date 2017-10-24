@@ -1,6 +1,7 @@
 import '../../sass/a.scss'
 import axios from 'axios'
-console.log('哈哈哈哈哈哈哈a');
+import jquery from 'jquery'
+console.log(jquery('h1'));
 // axios.get(
 //     '/api/articles/page?code=apply_article_document&size=10&page=1'
 // ).then(res => {

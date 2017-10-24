@@ -6,6 +6,7 @@ const extractTextPlugin = require('extract-text-webpack-plugin')
 
 const path = require('path')
 const glob = require('glob'); //匹配文件路径
+
 const globPath = {
     js:resolve('src/js/**/*.js'),
     // js:resolve('src/js/**/*.+(t|j)s'),
@@ -14,15 +15,17 @@ const globPath = {
 const pathJs = getEntry(globPath.js);
 const pathPug = getEntry(globPath.pug);
 
+//“__dirname”是node.js中的一个全局变量，它指向当前执行脚本所在的目录。
 function resolve(...dir) {  //拼接
    return path.resolve(__dirname, '..', ...dir)
 }
 
 const webpackConf = {
+   devtool: 'eval-source-map',
    entry: pathJs,
    output: {
-       filename: 'js/[name].[hash:8].js',
-       path: resolve('dist'),
+       filename: 'js/[name].[hash:8].js',   //打包后输出文件的文件名
+       path: resolve('dist'),  //打包后文件存放的地方
        publicPath: '/'   //发布路径配置
    },
    module: {
