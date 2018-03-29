@@ -32,6 +32,10 @@ module.exports = {
             {
                 test:/\.js$/,
                 use:'babel-loader'
+            },
+            {
+                test:require.resolve('jquery'),
+                loader:'expose?jQuery!expose?$'
             }
         ]
     },
@@ -43,5 +47,15 @@ module.exports = {
             filename: 'hello.html',
             template: './src/view/hello.html'
         })
-    ]
+    ],
+    devServer:{
+        host: '172.16.0.105',
+        port: '8090',
+        proxy: {
+            '/api': {
+                target: 'http://www.bonday.cn',
+                secure: false
+            }
+        }
+    }
 }
