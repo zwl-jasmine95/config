@@ -4,6 +4,8 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 //该插件的主要是为了抽离css样式,防止将样式打包在js中引起页面样式加载错乱的现象
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+//在每次构建前清理 /dist 文件夹
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const resolve = function resolve(...dir) {   //拼接路径
     return path.resolve(__dirname, ...dir)
@@ -40,6 +42,7 @@ module.exports = {
         ]
     },
     plugins:[
+        new CleanWebpackPlugin(['dist']),
         new ExtractTextPlugin({
             filename:'css/hello.min.css'
         }),
@@ -49,7 +52,7 @@ module.exports = {
         })
     ],
     devServer:{
-        host: '172.16.0.105',
+        host: '172.16.1.147',
         port: '8090',
         proxy: {
             '/api': {
