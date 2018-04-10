@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Lenovo\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
+  C:\Program Files\nodejs\node.exe C:\Users\Lenovo\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js dev
 
 PATH: 
   C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\Lenovo\AppData\Local\Microsoft\WindowsApps;;C:\Program Files\Microsoft VS Code\bin;C:\Users\Lenovo\AppData\Roaming\npm
@@ -27,6 +27,7 @@ npm manifest:
     "license": "ISC",
     "dependencies": {
       "babel-loader": "^7.1.4",
+      "clean-webpack-plugin": "^0.1.19",
       "css-loader": "^0.28.10",
       "expose-loader": "^0.7.5",
       "extract-text-webpack-plugin": "^4.0.0-beta.0",
@@ -6810,89 +6811,17 @@ Lockfile:
       yeoman-environment "^2.0.5"
 
 Trace: 
-  Error: D:\myProject\config\webpackConfig\node_modules\node-sass: Command failed.
-  Exit code: 1
+  Error: Command failed.
+  Exit code: 3221225786
   Command: C:\Windows\system32\cmd.exe
-  Arguments: /d /s /c node scripts/build.js
-  Directory: D:\myProject\config\webpackConfig\node_modules\node-sass
+  Arguments: /d /s /c webpack-dev-server --mode development --open
+  Directory: D:\myProject\config\webpackConfig
   Output:
-  Building: C:\Program Files\nodejs\node.exe D:\myProject\config\webpackConfig\node_modules\node-gyp\bin\node-gyp.js rebuild --verbose --libsass_ext= --libsass_cflags= --libsass_ldflags= --libsass_library=
-  gyp info it worked if it ends with ok
-  gyp verb cli [ 'C:\\Program Files\\nodejs\\node.exe',
-  gyp verb cli   'D:\\myProject\\config\\webpackConfig\\node_modules\\node-gyp\\bin\\node-gyp.js',
-  gyp verb cli   'rebuild',
-  gyp verb cli   '--verbose',
-  gyp verb cli   '--libsass_ext=',
-  gyp verb cli   '--libsass_cflags=',
-  gyp verb cli   '--libsass_ldflags=',
-  gyp verb cli   '--libsass_library=' ]
-  gyp info using node-gyp@3.6.2
-  gyp info using node@8.11.0 | win32 | x64
-  gyp verb command rebuild []
-  gyp verb command clean []
-  gyp verb clean removing "build" directory
-  gyp verb command configure []
-  gyp verb check python checking for Python executable "python2" in the PATH
-  gyp verb `which` failed Error: not found: python2
-  gyp verb `which` failed     at getNotFoundError (D:\myProject\config\webpackConfig\node_modules\which\which.js:13:12)
-  gyp verb `which` failed     at F (D:\myProject\config\webpackConfig\node_modules\which\which.js:68:19)
-  gyp verb `which` failed     at E (D:\myProject\config\webpackConfig\node_modules\which\which.js:80:29)
-  gyp verb `which` failed     at D:\myProject\config\webpackConfig\node_modules\which\which.js:89:16
-  gyp verb `which` failed     at D:\myProject\config\webpackConfig\node_modules\isexe\index.js:42:5
-  gyp verb `which` failed     at D:\myProject\config\webpackConfig\node_modules\isexe\windows.js:36:5
-  gyp verb `which` failed     at FSReqWrap.oncomplete (fs.js:152:21)
-  gyp verb `which` failed  python2 { Error: not found: python2
-  gyp verb `which` failed     at getNotFoundError (D:\myProject\config\webpackConfig\node_modules\which\which.js:13:12)
-  gyp verb `which` failed     at F (D:\myProject\config\webpackConfig\node_modules\which\which.js:68:19)
-  gyp verb `which` failed     at E (D:\myProject\config\webpackConfig\node_modules\which\which.js:80:29)
-  gyp verb `which` failed     at D:\myProject\config\webpackConfig\node_modules\which\which.js:89:16
-  gyp verb `which` failed     at D:\myProject\config\webpackConfig\node_modules\isexe\index.js:42:5
-  gyp verb `which` failed     at D:\myProject\config\webpackConfig\node_modules\isexe\windows.js:36:5
-  gyp verb `which` failed     at FSReqWrap.oncomplete (fs.js:152:21)
-  gyp verb `which` failed   stack: 'Error: not found: python2\n    at getNotFoundError (D:\\myProject\\config\\webpackConfig\\node_modules\\which\\which.js:13:12)\n    at F (D:\\myProject\\config\\webpackConfig\\node_modules\\which\\which.js:68:19)\n    at E (D:\\myProject\\config\\webpackConfig\\node_modules\\which\\which.js:80:29)\n    at D:\\myProject\\config\\webpackConfig\\node_modules\\which\\which.js:89:16\n    at D:\\myProject\\config\\webpackConfig\\node_modules\\isexe\\index.js:42:5\n    at D:\\myProject\\config\\webpackConfig\\node_modules\\isexe\\windows.js:36:5\n    at FSReqWrap.oncomplete (fs.js:152:21)',
-  gyp verb `which` failed   code: 'ENOENT' }
-  gyp verb check python checking for Python executable "python" in the PATH
-  gyp verb `which` failed Error: not found: python
-  gyp verb `which` failed     at getNotFoundError (D:\myProject\config\webpackConfig\node_modules\which\which.js:13:12)
-  gyp verb `which` failed     at F (D:\myProject\config\webpackConfig\node_modules\which\which.js:68:19)
-  gyp verb `which` failed     at E (D:\myProject\config\webpackConfig\node_modules\which\which.js:80:29)
-  gyp verb `which` failed     at D:\myProject\config\webpackConfig\node_modules\which\which.js:89:16
-  gyp verb `which` failed     at D:\myProject\config\webpackConfig\node_modules\isexe\index.js:42:5
-  gyp verb `which` failed     at D:\myProject\config\webpackConfig\node_modules\isexe\windows.js:36:5
-  gyp verb `which` failed     at FSReqWrap.oncomplete (fs.js:152:21)
-  gyp verb `which` failed  python { Error: not found: python
-  gyp verb `which` failed     at getNotFoundError (D:\myProject\config\webpackConfig\node_modules\which\which.js:13:12)
-  gyp verb `which` failed     at F (D:\myProject\config\webpackConfig\node_modules\which\which.js:68:19)
-  gyp verb `which` failed     at E (D:\myProject\config\webpackConfig\node_modules\which\which.js:80:29)
-  gyp verb `which` failed     at D:\myProject\config\webpackConfig\node_modules\which\which.js:89:16
-  gyp verb `which` failed     at D:\myProject\config\webpackConfig\node_modules\isexe\index.js:42:5
-  gyp verb `which` failed     at D:\myProject\config\webpackConfig\node_modules\isexe\windows.js:36:5
-  gyp verb `which` failed     at FSReqWrap.oncomplete (fs.js:152:21)
-  gyp verb `which` failed   stack: 'Error: not found: python\n    at getNotFoundError (D:\\myProject\\config\\webpackConfig\\node_modules\\which\\which.js:13:12)\n    at F (D:\\myProject\\config\\webpackConfig\\node_modules\\which\\which.js:68:19)\n    at E (D:\\myProject\\config\\webpackConfig\\node_modules\\which\\which.js:80:29)\n    at D:\\myProject\\config\\webpackConfig\\node_modules\\which\\which.js:89:16\n    at D:\\myProject\\config\\webpackConfig\\node_modules\\isexe\\index.js:42:5\n    at D:\\myProject\\config\\webpackConfig\\node_modules\\isexe\\windows.js:36:5\n    at FSReqWrap.oncomplete (fs.js:152:21)',
-  gyp verb `which` failed   code: 'ENOENT' }
-  gyp verb could not find "python". checking python launcher 
-  gyp verb could not find "python". guessing location 
-  gyp verb ensuring that file exists: C:\Python27\python.exe
-  gyp ERR! configure error 
-  gyp ERR! stack Error: Can't find Python executable "python", you can set the PYTHON env variable.
-  gyp ERR! stack     at PythonFinder.failNoPython (D:\myProject\config\webpackConfig\node_modules\node-gyp\lib\configure.js:483:19)
-  gyp ERR! stack     at PythonFinder.<anonymous> (D:\myProject\config\webpackConfig\node_modules\node-gyp\lib\configure.js:508:16)
-  gyp ERR! stack     at D:\myProject\config\webpackConfig\node_modules\graceful-fs\polyfills.js:284:29
-  gyp ERR! stack     at FSReqWrap.oncomplete (fs.js:152:21)
-  gyp ERR! System Windows_NT 10.0.16299
-  gyp ERR! command "C:\\Program Files\\nodejs\\node.exe" "D:\\myProject\\config\\webpackConfig\\node_modules\\node-gyp\\bin\\node-gyp.js" "rebuild" "--verbose" "--libsass_ext=" "--libsass_cflags=" "--libsass_ldflags=" "--libsass_library="
-  gyp ERR! cwd D:\myProject\config\webpackConfig\node_modules\node-sass
-  gyp ERR! node -v v8.11.0
-  gyp ERR! node-gyp -v v3.6.2
-  gyp ERR! not ok 
-  Build failed with error code: 1
+  
       at ProcessTermError.MessageError (C:\Users\Lenovo\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
       at new ProcessTermError (C:\Users\Lenovo\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:226:113)
       at ChildProcess.<anonymous> (C:\Users\Lenovo\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:30281:17)
       at emitTwo (events.js:126:13)
       at ChildProcess.emit (events.js:214:7)
       at maybeClose (internal/child_process.js:925:16)
-      at Socket.stream.socket.on (internal/child_process.js:346:11)
-      at emitOne (events.js:116:13)
-      at Socket.emit (events.js:211:7)
-      at Pipe._handle.close [as _onclose] (net.js:567:12)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)

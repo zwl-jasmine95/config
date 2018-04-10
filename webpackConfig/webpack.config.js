@@ -31,16 +31,33 @@ module.exports = {
                     use: ['css-loader','sass-loader']
                 })
             },
+            // {
+            //     test: require.resolve('jquery'),
+            //     use: [{
+            //         loader: 'expose-loader',
+            //         options: 'jQuery'
+            //     },{
+            //         loader: 'expose-loader',
+            //         options: '$'
+            //     }]
+            // },
             {
                 test:/\.js$/,
                 use:'babel-loader'
-            },
-            {
-                test:require.resolve('jquery'),
-                loader:'expose?jQuery!expose?$'
             }
         ]
     },
+    // optimization:{
+    //     splitChunks:{
+    //         cacheGroups:{
+    //             commons:{
+    //                 test: /[\\/]node_modules[\\/]/,
+    //                 name: "vendors",
+    //                 chunks: "all"
+    //             }
+    //         }
+    //     }
+    // },
     plugins:[
         new CleanWebpackPlugin(['dist']),
         new ExtractTextPlugin({
@@ -50,13 +67,18 @@ module.exports = {
             filename: 'hello.html',
             template: './src/view/hello.html'
         })
+        // ,
+        // new webpack.ProvidePlugin({
+        //     $:"jquery",
+        //     jQuery:"jquery"
+        // })
     ],
     devServer:{
         host: '172.16.1.147',
         port: '8090',
         proxy: {
             '/api': {
-                target: 'http://www.bonday.cn',
+                target: 'http://172.16.0.59:8081',
                 secure: false
             }
         }
