@@ -6812,7 +6812,7 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 3221225786
+  Exit code: 1
   Command: C:\Windows\system32\cmd.exe
   Arguments: /d /s /c webpack-dev-server --mode development --open
   Directory: D:\myProject\config\webpackConfig
