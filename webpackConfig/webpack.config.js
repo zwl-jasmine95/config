@@ -40,47 +40,34 @@ const webpackConf = {
                     use: ['css-loader','sass-loader']
                 })
             },
-            // {
-            //     test: require.resolve('jquery'),
-            //     use: [{
-            //         loader: 'expose-loader',
-            //         options: 'jQuery'
-            //     },{
-            //         loader: 'expose-loader',
-            //         options: '$'
-            //     }]
-            // },
             {
                 test:/\.js$/,
                 use:'babel-loader'
             }
         ]
     },
-    // optimization:{
-    //     splitChunks:{
-    //         cacheGroups:{
-    //             commons:{
-    //                 test: /[\\/]node_modules[\\/]/,
-    //                 name: "vendors",
-    //                 chunks: "all"
-    //             }
-    //         }
-    //     }
-    // },
+    optimization:{
+        //拆分公共包
+        splitChunks:{
+            cacheGroups:{
+                //项目公共组件
+                common: {
+                    name: "common",
+                    chunks: "initial",
+                    minChunks: 2
+                }
+            }
+        }
+    },
     plugins:[
         new CleanWebpackPlugin(['dist']),
         new ExtractTextPlugin({
             filename:'css/[name].min.css'
         }),
-        // new HtmlWebpackPlugin({
-        //     filename: 'hello.html',
-        //     template: './src/view/hello.html'
-        // })
-        // ,
-        // new webpack.ProvidePlugin({
-        //     $:"jquery",
-        //     jQuery:"jquery"
-        // })
+        new webpack.ProvidePlugin({
+            $:"jquery",
+            jQuery:"jquery"
+        })
     ],
     devServer:{
         host: '172.16.1.147',
@@ -115,7 +102,7 @@ for (let html in pathHtml) {
     let htmlWebpack = {
         filename: html + '.html',
         template: pathHtml[html],
-        chunks: [html]  //忽略的话所有入口都会被注入
+        chunks: [html,'common']  //忽略的话所有入口都会被注入
     }
     webpackConf.plugins.push(new HtmlWebpackPlugin(htmlWebpack))
 }
