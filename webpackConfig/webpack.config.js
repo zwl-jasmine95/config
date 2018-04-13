@@ -29,7 +29,7 @@ const webpackConf = {
     module:{
         rules:[
             {
-                test: /\.html?$/,
+                test: /\.html$/,
                 loader: 'html-loader',
             },
             {
