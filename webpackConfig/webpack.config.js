@@ -29,6 +29,10 @@ const webpackConf = {
     module:{
         rules:[
             {
+                test: /\.html?$/,
+                loader: 'html-loader',
+            },
+            {
                 test:/\.css$/,
                 use:ExtractTextPlugin.extract({
                     use: 'css-loader'
@@ -43,6 +47,16 @@ const webpackConf = {
             {
                 test:/\.js$/,
                 use:'babel-loader'
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit:8192, // 表示小于8192字节的图片转为base64,大于8192字节的是路径
+                        name: 'images/[name].[hash:7].[ext]'
+                    }
+                }]
             }
         ]
     },
