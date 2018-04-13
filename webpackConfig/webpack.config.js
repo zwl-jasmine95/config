@@ -23,7 +23,7 @@ const pathHtml = getEntry(globPath.html)
 const webpackConf = {
     entry: pathJs,
     output: {
-        filename: 'js/[name].min.js',
+        filename: 'js/[name].[hash].js',
         path: resolve('dist')
     },
     module:{
@@ -31,24 +31,20 @@ const webpackConf = {
             {
                 test: /\.html$/,
                 loader: 'html-loader',
-            },
-            {
+            },{
                 test:/\.css$/,
                 use:ExtractTextPlugin.extract({
                     use: 'css-loader'
                 })
-            },
-            {
+            },{
                 test:/\.scss$/,
                 use:ExtractTextPlugin.extract({
                     use: ['css-loader','sass-loader']
                 })
-            },
-            {
+            },{
                 test:/\.js$/,
                 use:'babel-loader'
-            },
-            {
+            },{
                 test: /\.(png|jpe?g|gif|svg)$/,
                 use: [{
                     loader: 'url-loader',
@@ -76,7 +72,7 @@ const webpackConf = {
     plugins:[
         new CleanWebpackPlugin(['dist']),
         new ExtractTextPlugin({
-            filename:'css/[name].min.css'
+            filename:'css/[name].[hash].css'
         }),
         new webpack.ProvidePlugin({
             $:"jquery",
