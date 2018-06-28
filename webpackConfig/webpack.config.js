@@ -13,12 +13,12 @@ const resolve = function resolve(...dir) {   //拼接路径
 }
 
 const globPath = {
-    js: resolve('src/js/*.js'),
-    html: resolve('src/view/*.html')
+    js: resolve('src/js/**/*.js'),
+    html: resolve('src/view/**/*.html')
 }
 
-const pathJs = getEntry(globPath.js)
-const pathHtml = getEntry(globPath.html)
+const pathJs = getEntry(globPath.js,'js')
+const pathHtml = getEntry(globPath.html,'view')
 
 const webpackConf = {
     entry: pathJs,
@@ -93,14 +93,14 @@ const webpackConf = {
   
 /**
  * 入口entry()的值 {}
- * @param {obj} globPath js查找路径
- * @param {obj} entries 文件名与文件路径的值键对
- * eg:{'hello','src/js/hello.js'}
+ * @param {obj} path js查找路径
+ * @param {string} type 文件夹名 js/view
+ * @return {obj} entries 文件名与文件路径的值键对
  */
-function getEntry(path){
+function getEntry(path,type){
     let entries = {}
     glob.sync(path).forEach(entry => {
-        let arr = entry.split('/')
+        let arr = entry.split(type + '/')
         let name = arr[arr.length - 1].split('.')[0]
         entries[name] = entry
     })
