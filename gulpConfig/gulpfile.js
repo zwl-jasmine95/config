@@ -5,6 +5,10 @@ var gulpSass = require('gulp-sass')  //将scss预处理为css
     cleanCss = require('gulp-clean-css')  //压缩css
     uglify = require('gulp-uglify')  //压缩js文件
 
+// 跨域与代理
+const proxy = require('http-proxy-middleware')
+const connect = require('gulp-connect')
+
 // 项目目录
 var lib = './lib/'
     src = './src/'
@@ -12,6 +16,25 @@ var lib = './lib/'
 
 
 /***** 任务 ******/
+gulp.task('server', function() {
+    connect.server({
+        livereload: true,
+        root: "./dist",
+        port: 8080,
+        middleware: function(connect, opt) {
+            return [
+                proxy('/api',{
+                    target: 'http://172.16.0.100:8080',
+                    changeOrigin: true,
+                }),
+                proxy('/system',{
+                    target: 'http://172.16.1.185:8888',
+                    changeOrigin: true,
+                })
+            ]
+        }
+    });
+});
 
 // 将scss预处理为css，并压缩css
 gulp.task('css',function(){
@@ -40,4 +63,5 @@ gulp.task('watch', function () {  //定义名为watchless的任务
     gulp.watch(src + 'view/**/*.html', ['html']);//监听该目录下html文件的变化
 });
 
-gulp.task('default',['css','js','html'])
+gulp.task('default',['server','css','js','html','watch'])
+// gulp.task('default',['server','watch'])
