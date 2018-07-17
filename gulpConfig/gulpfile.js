@@ -16,10 +16,10 @@ var lib = './lib/'
 
 
 /***** 任务 ******/
-gulp.task('server', function() {
+gulp.task('server',['build'], function() {
     connect.server({
         livereload: true,
-        root: "./dist",
+        root: './dist',
         port: 8080,
         middleware: function(connect, opt) {
             return [
@@ -42,6 +42,7 @@ gulp.task('css',function(){
         .pipe(gulpSass())
         .pipe(cleanCss())
         .pipe(gulp.dest(dist + 'css')) //最后生成的文件路径为src/css/*.css
+        .pipe(connect.reload())   //当内容发生改变时， 重新加载。
 })
 
 //压缩js
@@ -49,12 +50,14 @@ gulp.task('js',function(){
     gulp.src(src + 'js/**/*.js')
         .pipe(uglify())
         .pipe(gulp.dest(dist + 'js'))
-})
+        .pipe(connect.reload())  //当内容发生改变时， 重新加载。
+}) 
 
 //html
 gulp.task('html',function(){
     gulp.src(src + 'view/**/*.html')
         .pipe(gulp.dest(dist))
+        .pipe(connect.reload())  //当内容发生改变时， 重新加载。
 })
 
 gulp.task('watch', function () {  //定义名为watchless的任务
@@ -63,5 +66,6 @@ gulp.task('watch', function () {  //定义名为watchless的任务
     gulp.watch(src + 'view/**/*.html', ['html']);//监听该目录下html文件的变化
 });
 
-gulp.task('default',['server','css','js','html','watch'])
-// gulp.task('default',['server','watch'])
+gulp.task('build',['css','js','html'])
+
+gulp.task('default',['server','watch'])
