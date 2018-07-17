@@ -4,6 +4,7 @@ var gulpSass = require('gulp-sass')  //将scss预处理为css
     // gulpLess = require('gulp-less')
     cleanCss = require('gulp-clean-css')  //压缩css
     uglify = require('gulp-uglify')  //压缩js文件
+    del = require('del')
 
 // 跨域与代理
 const proxy = require('http-proxy-middleware')
@@ -16,8 +17,20 @@ var lib = './lib/'
 
 
 /***** 任务 ******/
+gulp.task('cleanCss',function(cb){
+    return del(dist + '**/*.css',cb)
+})
+
+gulp.task('cleanJs',function(cb){
+    return del(dist + '**/*.js',cb)
+})
+
+gulp.task('cleanHtml',function(cb){
+    return del(dist + '**/*.html',cb)
+})
+
 gulp.task('server',['build'], function() {
-    connect.server({
+    return connect.server({
         livereload: true,
         root: './dist',
         port: 8080,
@@ -37,8 +50,8 @@ gulp.task('server',['build'], function() {
 });
 
 // 将scss预处理为css，并压缩css
-gulp.task('css',function(){
-    gulp.src(src + 'scss/**/*.scss')
+gulp.task('css',['cleanCss'],function(){
+    return gulp.src(src + 'scss/**/*.scss')
         .pipe(gulpSass())
         .pipe(cleanCss())
         .pipe(gulp.dest(dist + 'css')) //最后生成的文件路径为src/css/*.css
@@ -46,16 +59,16 @@ gulp.task('css',function(){
 })
 
 //压缩js
-gulp.task('js',function(){
-    gulp.src(src + 'js/**/*.js')
+gulp.task('js',['cleanJs'],function(){
+    return gulp.src(src + 'js/**/*.js')
         .pipe(uglify())
         .pipe(gulp.dest(dist + 'js'))
         .pipe(connect.reload())  //当内容发生改变时， 重新加载。
 }) 
 
 //html
-gulp.task('html',function(){
-    gulp.src(src + 'view/**/*.html')
+gulp.task('html',['cleanHtml'],function(){
+    return gulp.src(src + 'view/**/*.html')
         .pipe(gulp.dest(dist))
         .pipe(connect.reload())  //当内容发生改变时， 重新加载。
 })
