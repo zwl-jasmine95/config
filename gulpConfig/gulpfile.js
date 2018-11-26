@@ -1,10 +1,13 @@
 var gulp = require('gulp');
 
-var gulpSass = require('gulp-sass')  //将scss预处理为css
-    // gulpLess = require('gulp-less')
-    cleanCss = require('gulp-clean-css')  //压缩css
-    uglify = require('gulp-uglify')  //压缩js文件
-    del = require('del')
+var gulpSass = require('gulp-sass'),  //将scss预处理为css
+    // gulpLess = require('gulp-less'),
+    cleanCss = require('gulp-clean-css'),  //压缩css
+    uglify = require('gulp-uglify'),  //压缩js文件
+    del = require('del'),  //文件删除
+    watch = require('gulp-watch'),   //监听文件的新建和删除。
+    imageMin = require('gulp-imagemin'),  //压缩图片
+    autoprefixer = require('gulp-autoprefixer')  //根据设置浏览器版本自动处理浏览器前缀
 
 // 跨域与代理
 const proxy = require('http-proxy-middleware')
@@ -50,16 +53,19 @@ gulp.task('server',['build'], function() {
 });
 
 // 将scss预处理为css，并压缩css
-gulp.task('css',['cleanCss'],function(){
+gulp.task('css',function(){
     return gulp.src(src + 'scss/**/*.scss')
         .pipe(gulpSass())
-        .pipe(cleanCss())
-        .pipe(gulp.dest(dist + 'css')) //最后生成的文件路径为src/css/*.css
+        .pipe(autoprefixer({
+            browsers: ['last 5 versions']
+        }))
+        .pipe(cleanCss({compatibility: 'ie8'})) //保留ie8兼容写法
+        .pipe(gulp.dest(dist + 'css')) 
         .pipe(connect.reload())   //当内容发生改变时， 重新加载。
 })
 
 //压缩js
-gulp.task('js',['cleanJs'],function(){
+gulp.task('js',function(){
     return gulp.src(src + 'js/**/*.js')
         .pipe(uglify())
         .pipe(gulp.dest(dist + 'js'))
@@ -67,9 +73,20 @@ gulp.task('js',['cleanJs'],function(){
 }) 
 
 //html
-gulp.task('html',['cleanHtml'],function(){
+gulp.task('html',function(){
     return gulp.src(src + 'view/**/*.html')
         .pipe(gulp.dest(dist))
+        .pipe(connect.reload())  //当内容发生改变时， 重新加载。
+})
+
+//img
+gulp.task('imagemin',function(){
+    return gulp.src(src + 'images/**/*.{png,jpg,gif,ico}')
+        .pipe(imageMin({
+            optimizationLevel: 5, // 取值范围：0-7（优化等级）
+            progressive: true    //无损压缩jpg图片
+        }))   
+        .pipe(gulp.dest(dist + 'images'))
         .pipe(connect.reload())  //当内容发生改变时， 重新加载。
 })
 
